@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Create post</h1>
+   <form action="" method="POST">
+        <div class="mainBlock">
+            <div>
+                <p>Тема</p>
+                <input type="text" placeholder="Название темы" name="title" required>
+            </div>
+
+            <div>
+                <p>
+                    <p>Текст</p>
+                    <input type="text" placeholder="Введите текст" name="body" required>
+                </p>
+            </div>
+        </div>
+
+        <div>
+            {{ range .Categories }}
+            <label >
+                <input type="checkbox" name="categories" value="{{ . }}">{{ . }}
+            </label>
+            {{ end }}
+        </div>
+        <button type="submit" >Create</button>
+   </form>
+
+   <input type="button" value="Back" onClick='location.href="http://localhost:8080"'>
+</body>
+</html>

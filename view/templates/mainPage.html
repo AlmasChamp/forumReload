@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/view/static/mainPage.css">
+    <title>Document</title>
+</head>
+<body>
+    {{if .Islogged}}
+        <p><input type="button"  value="CreatePost" onClick='location.href="http://localhost:8080/createPostPage"'></p>
+        <form action="" method="POST">
+            <p><input type="submit" value="LogOut" name = "logOut"></p>
+        </form>
+    {{else}}
+    <div class="div1">
+        <p><input type="button" value="Registration" onClick='location.href="http://localhost:8080/regPage"'></p>
+        <p><input type="button" value="SignIn" onClick='location.href="http://localhost:8080/logPage"'></p>
+    </div>
+    {{end}}   
+
+    {{range .UsersPosts}}
+    <div class="post">
+        <a href="postPage/{{.ID}}"> <p>{{.Title}}</p></a>
+        <p>{{.Body}}</p>
+    </div>
+    {{end}}
+    
+</body>
+</html>

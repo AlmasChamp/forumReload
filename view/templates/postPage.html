@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+
+        <p>{{.Title}}</p>
+        <p>{{.Body}}</p>
+
+        <form action="" method ="POST">
+
+            <textarea  name="UserComm"id="" cols="30" rows="10" placeholder="Оставьте свой комментарий"></textarea>
+          
+            <div>
+                <button type="submit"  name="SubmitComm" value="submitComm">Пікір қалдыру</button>
+           </div>
+
+           <div>
+                <input type="submit" name="PostLike" value="like" onClick='location.href="http://localhost:8080/postPage/{{.ID}}"'>
+                <span>{{.Likes}}</span>
+                <input type="submit" name="PostDislike" value="dislike" onClick='location.href="http://localhost:8080/postPage/{{.ID}}"'>
+                <span>{{.Dislikes}}</span>
+            </div>
+
+        </form>
+
+        <p><input type="button" value="Back" onClick='location.href="http://localhost:8080"'></p>
+
+    </div>
+
+    <div>
+        {{range .AllComm}}
+        <p>{{.UserComm}}</p>
+
+        <form action="" method="POST">
+            <button type="submit" name="CommLike" value="like {{.ID}}" onClick='location.href="http://localhost:8080"'>Like</button>
+            <span>{{.Likes}}</span>
+            <button type="submit" name="CommDislike" value="dislike {{.ID}}" onClick='location.href="http://localhost:8080"'>Dislike</button>
+            <span>{{.Dislikes}}</span>
+        </form>
+        {{end}}
+    </div>
+</body>
+</html>
