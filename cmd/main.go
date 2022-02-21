@@ -29,14 +29,18 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	userComposite, err := app.NewUserComposites(db)
 
 	mux := http.NewServeMux()
-	// handler.Register(mux)
-	userComposite.Handler.Register(mux)
 
-	fmt.Println("Poehali")
-	http.ListenAndServe(":8080", mux)
+	userComposite, err := app.NewUserComposites(db)
+	postComposite, err := app.NewPostComposites(db)
+
+	
+	userComposite.Handler.Register(mux)
+	postComposite.Handler.Register(mux)
+
+	fmt.Println("Start on port 8080")
+	http.ListenAndServe(":8888", mux)
 	cancel()
 	fmt.Println("Priehali")
 

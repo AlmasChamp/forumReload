@@ -2,6 +2,7 @@ package user
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 
@@ -10,12 +11,12 @@ import (
 
 func (h *Handler) logPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("logPage", r.Method)
-	// templ, err := template.ParseFiles("../view/templates/loginPage.html")
-	// if err != nil {
-	// 	w.WriteHeader(500)
-	// 	log.Println(err)
-	// 	return
-	// }
+	templ, err := template.ParseFiles("./view/templates/loginPage.html")
+	if err != nil {
+		w.WriteHeader(500)
+		log.Println(err)
+		return
+	}
 
 	switch r.Method {
 	case "GET":
@@ -23,12 +24,12 @@ func (h *Handler) logPage(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(404)
 			return
 		}
-		// er := forum.Error{}
-		// if err = templ.Execute(w, nil); err != nil {
-		// 	w.WriteHeader(500)
-		// 	log.Println(err)
-		// 	return
-		// }
+		// er := entities.Error{}
+		if err = templ.Execute(w, nil); err != nil {
+			w.WriteHeader(500)
+			log.Println(err)
+			return
+		}
 	case "POST":
 		if r.URL.Path != "/logPage" {
 			w.WriteHeader(404)
@@ -51,13 +52,13 @@ func (h *Handler) logPage(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, cookie)
 
-		// http.Redirect(w, r, "http://localhost:8080", 302)
+		http.Redirect(w, r, "http://localhost:8080", 302)
 
-		// if err = templ.Execute(w, nil); err != nil {
-		// 	w.WriteHeader(500)
-		// 	log.Println(err)
-		// 	return
-		// }
+		if err = templ.Execute(w, nil); err != nil {
+			w.WriteHeader(500)
+			log.Println(err)
+			return
+		}
 	default:
 		w.WriteHeader(405)
 		return

@@ -11,7 +11,7 @@ import (
 // User Registration
 func (h *Handler) RegPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("RegPage")
-	templ, err := template.ParseFiles("../view/templates/regPage.html")
+	templ, err := template.ParseFiles("./view/templates/regPage.html")
 	// if err != nil {
 	// 	log.Println("HereHandlCreateUser", err)
 	// 	w.WriteHeader(500)

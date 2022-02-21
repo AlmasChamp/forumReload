@@ -15,5 +15,4 @@ type Service interface {
 
 type Handler interface {
 	Register(mux *http.ServeMux)
-	// RegPage(w http.ResponseWriter, r *http.Request)
 }

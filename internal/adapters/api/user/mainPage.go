@@ -35,7 +35,7 @@ func (h *Handler) mainPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	temp, err := template.ParseFiles("../view/templates/mainPage.html")
+	temp, err := template.ParseFiles("./view/templates/mainPage.html")
 	if err != nil {
 		log.Println(err)
 		w.WriteHeader(500)
@@ -51,6 +51,7 @@ func (h *Handler) mainPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if cookie == nil {
+		fmt.Println("Here")
 		temp.Execute(w, userInfo)
 		return
 	} else if cookie != nil {
@@ -67,11 +68,10 @@ func (h *Handler) mainPage(w http.ResponseWriter, r *http.Request) {
 			userInfo.Islogged = true
 		} else if cookieFromDb == "" || cookieFromDb != cookie {
 			userInfo.Islogged = false
-			// http.Redirect(w, r, "http://localhost:8080/", 302)
+			http.Redirect(w, r, "http://localhost:8080/", 302)
 		}
-		temp.Execute(w, userInfo)
 		// fmt.Println(infoAboutFromUser)
-		// temp.Execute(w, userInfo)
+		temp.Execute(w, userInfo)
 
 	}
 }

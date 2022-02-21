@@ -4,7 +4,6 @@ import entities "forum/internal/model"
 
 //go:generate mockgen -source=interface.go -destination=mocks/mock.go
 
-
 type Storage interface {
 	AddUser(name, email, password string) error
 	GetUserPassword(email string) (string, error)
@@ -14,3 +13,4 @@ type Storage interface {
 	GetAllPosts() ([]entities.Post, error)
 	GetValueCookie(userCookie string) (string, error)
 }
+
