@@ -12,8 +12,6 @@ func MiddleWare(handler http.HandlerFunc) http.HandlerFunc {
 		fmt.Println("MiddleWare")
 		cookie, err := r.Cookie("session")
 		if err != nil {
-			fmt.Println("MiddleWareERROR")
-			// handler.ServeHTTP(w, r)
 			handler(w, r)
 			return
 		} else {

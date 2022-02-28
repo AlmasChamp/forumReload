@@ -18,7 +18,7 @@ func (h *Handler) mainPage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println("mainPAge", r.Method)
+	// fmt.Println("mainPAge", r.Method)
 
 	if r.Method != http.MethodGet {
 		// deleteUserCookie := r.FormValue("logOut")

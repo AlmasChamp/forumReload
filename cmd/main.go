@@ -32,6 +32,7 @@ func main() {
 
 	mux := http.NewServeMux()
 
+
 	userComposite, err := app.NewUserComposites(db)
 	postComposite, err := app.NewPostComposites(db)
 

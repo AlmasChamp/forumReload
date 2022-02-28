@@ -18,4 +18,8 @@ func (h *Handler) Register(mux *http.ServeMux) {
 	mux.HandleFunc("/regPage", h.RegPage)
 	mux.HandleFunc("/logPage", h.logPage)
 	mux.HandleFunc("/", middle.MiddleWare(h.mainPage))
+	fs := http.FileServer(http.Dir("./view/static"))
+	mux.Handle("/view/static/", http.StripPrefix("/view/static/", fs))
+	// fileServer := http.FileServer(http.Dir("./ui/static/"))
+	// mux.Handle("/static/", http.StripPrefix("/static/", fileServer))
 }

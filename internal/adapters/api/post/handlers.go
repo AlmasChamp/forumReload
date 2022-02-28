@@ -1,6 +1,7 @@
 package post
 
 import (
+	"forum/internal/app/middle"
 	"net/http"
 )
 
@@ -13,7 +14,7 @@ func NewHandler(service PostService) Handler {
 }
 
 func (h *PostHandler) Register(mux *http.ServeMux) {
-	mux.HandleFunc("/createPostPage", h.createPostPage)
-
+	mux.HandleFunc("/createPostPage", middle.MiddleWare(h.createPostPage))
+	mux.HandleFunc("/postPage/", middle.MiddleWare(h.postPage))
 	// mux.HandleFunc("/", middle.MiddleWare(h.mainPage))
 }

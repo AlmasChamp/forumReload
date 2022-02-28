@@ -74,7 +74,7 @@ func CreateTables(db *sql.DB) error {
 	}
 
 	_, err = db.Exec(`
-	CREATE TABLE IF NOT EXISTS CommDisLikes (
+	CREATE TABLE IF NOT EXISTS CommAct (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		like INTEGER,
 		dislike INTEGER,
