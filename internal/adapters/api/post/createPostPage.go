@@ -9,6 +9,8 @@ import (
 )
 
 func (h *PostHandler) createPostPage(w http.ResponseWriter, r *http.Request) {
+
+	// fmt.Println(r.RequestURI[10:],"---------------CREATEPOSTPAGE----------------")
 	cookie := r.Context().Value("user")
 
 	templ, err := template.ParseFiles("./view/templates/createPostPage.html")

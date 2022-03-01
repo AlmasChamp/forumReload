@@ -9,45 +9,58 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="p-1 bg-dark text-white">
-          <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-         
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="#" class="nav-link px-2 text-secondary" onClick='location.href="http://localhost:8080/"'>Home</a></li>
-              <li><a href="#" class="nav-link px-2 text-secondary" onClick='location.href="http://localhost:8080/createPostPage"'>CreatePost</a> </li>
-            </ul>
-    
-            {{if .Islogged}}
-            <div class="text-end">
-                <form action="" method="POST">
-                    <button type="submit" class="btn btn-warning" value="LogOut" name = "logOut">LogOut</button>
-                </form>
-              </div>
-            {{else}}
-            <div class="text-end">
-              <button type="button" class="btn btn-outline-light me-2" onClick='location.href="http://localhost:8080/logPage"'></span>SignIn</button>
-              <button type="button" class="btn btn-warning" onClick='location.href="http://localhost:8080/regPage"' >SignUp</button>
-            </div>
-            {{end}}
-          </div>
-    </header>
-      {{range .UsersPosts}}
-      <div class="post">
-          <a href="postPage/{{.ID}}"> <p>{{.Title}}</p></a>
-          <p>{{.Body}}</p>
-      </div>
-      {{end}}
 
-      <div class="panel panel-default">
-        <div class="panel-heading" style="box-sizing: border-box;">
-          <span class="lead"><a href="/title/{{.ID}}" style="overflow-x:scroll"><i class="fa fa-comment-o"></i> {{ .Title }}</a></span>
+  <div class="navbar navbar-default navbar-static-top" role="navigation"></div>
+    <header class="p-1 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+         
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2 text-white bi bi-vector-pen" onClick='location.href="http://localhost:8080/"'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-steam" viewBox="0 0 16 16">
+              <path d="M.329 10.333A8.01 8.01 0 0 0 7.99 16C12.414 16 16 12.418 16 8s-3.586-8-8.009-8A8.006 8.006 0 0 0 0 7.468l.003.006 4.304 1.769A2.198 2.198 0 0 1 5.62 8.88l1.96-2.844-.001-.04a3.046 3.046 0 0 1 3.042-3.043 3.046 3.046 0 0 1 3.042 3.043 3.047 3.047 0 0 1-3.111 3.044l-2.804 2a2.223 2.223 0 0 1-3.075 2.11 2.217 2.217 0 0 1-1.312-1.568L.33 10.333Z"/>
+              <path d="M4.868 12.683a1.715 1.715 0 0 0 1.318-3.165 1.705 1.705 0 0 0-1.263-.02l1.023.424a1.261 1.261 0 1 1-.97 2.33l-.99-.41a1.7 1.7 0 0 0 .882.84Zm3.726-6.687a2.03 2.03 0 0 0 2.027 2.029 2.03 2.03 0 0 0 2.027-2.029 2.03 2.03 0 0 0-2.027-2.027 2.03 2.03 0 0 0-2.027 2.027Zm2.03-1.527a1.524 1.524 0 1 1-.002 3.048 1.524 1.524 0 0 1 .002-3.048Z"/>
+            </svg>Home</a></li>
+            <li><a href="#" class="nav-link px-2 text-white" onClick='location.href="http://localhost:8080/createPostPage"'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
+              <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+            </svg> CreatePost</a> </li>
+            <li><a href="#" class="nav-link px-2 text-white bi bi-vector-pen" onClick='location.href="http://localhost:8080/"'>Categories</a></li>
+            <li><a href="#" class="nav-link px-2 text-white bi bi-vector-pen" onClick='location.href="http://localhost:8080/"'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+            </svg>Activity</a></li>
+            <li><a href="#" class="nav-link px-2 text-white bi bi-vector-pen" onClick='location.href="http://localhost:8080/"'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+            </svg>Posts</a></li>
+          </ul>
+  
+          {{if .Islogged}}
+          <div class="text-end">
+              <form action="" method="POST">
+                  <button type="submit" class="btn btn-warning" value="LogOut" name = "logOut">LogOut</button>
+              </form>
+            </div>
+          {{else}}
+          <div class="text-end">
+            <button type="button" class="btn btn-outline-light me-2" onClick='location.href="http://localhost:8080/logPage"'></span>SignIn</button>
+            <button type="button" class="btn btn-warning" onClick='location.href="http://localhost:8080/regPage"' >SignUp</button>
+          </div>
+          {{end}}
         </div>
+      
+        {{range .UsersPosts}}
+        <div class="bg-light p-5 rounded">
+          <h1><span class="lead"><a href="postPage/{{.ID}}" style="overflow-x:scroll"><i class="fa fa-comment-o"></i> {{ .Title }}</a></span></h1>
+          <p class="lead">{{.Body}}</p>
+          <a class="btn btn-lg btn-primary" href="postPage/{{.ID}}" role="button">Read more &raquo;</a>
+        </div>
+        <div class="b-example-divider"></div>
+        {{end}}
+
       </div>
+    </header>
 
 </body>
 </html>
-
-
 
 
 <!-- <header class="p-3 bg-dark text-white">

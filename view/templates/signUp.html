@@ -27,13 +27,13 @@
             <p><input type="text" placeholder="Email" name="eMail"></p>
             <p><input type="text" placeholder="Password" name="password1"></p>
             <p><input type="text" placeholder="Password" name="password2"></p>
+            <div>
+                {{ if eq .Err true }}
+                {{ .MSG }}
+                {{ end }}
+            </div>
             <button class="btn btn-primary"  type="submit">SignUp</button>  
         </form>
-        <div>
-            {{ if eq .Err true }}
-            {{ .MSG }}
-            {{ end }}
-        </div>
         <input class="btn btn-primary" type="submit" value="Back"onClick='location.href="http://localhost:8080"'>
     </div>
    

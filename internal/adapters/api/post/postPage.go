@@ -18,9 +18,12 @@ func (h *PostHandler) postPage(w http.ResponseWriter, r *http.Request) {
 	post := &entities.Post{}
 	commAct := &entities.Comm{}
 	indPost, err := strconv.Atoi(r.RequestURI[10:])
+	if err != nil {
+		log.Println(err)
+	}
 	// commActivityInCommLikes := ""
 	idComm := 0
-	// fmt.Println(indPost, "-------------------------------Post")
+	// fmt.Println(r.RequestURI[1:], indPost, err, "-------------------------------Post")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -29,7 +32,7 @@ func (h *PostHandler) postPage(w http.ResponseWriter, r *http.Request) {
 	post, err = h.Service.GetPost(post, indPost)
 
 	if r.Method == "POST" {
-		fmt.Println(1, cookie)
+		fmt.Println(-1, cookie)
 		if cookie == nil {
 			fmt.Println(2)
 			http.Redirect(w, r, "http://localhost:8080/logPage", 302)
@@ -43,8 +46,9 @@ func (h *PostHandler) postPage(w http.ResponseWriter, r *http.Request) {
 		commDislike := r.FormValue("CommDislike")
 		UserId, err := h.Service.UserId(cookie.(string))
 		if err != nil {
+			fmt.Println(-2)
+			http.Redirect(w, r, "http://localhost:8080/logPage", 302)
 			log.Println(err)
-
 			return
 		}
 
@@ -54,23 +58,26 @@ func (h *PostHandler) postPage(w http.ResponseWriter, r *http.Request) {
 		//Добавляю лайки или дизлайки в таблицу ДисЛайкс
 		if disOrLike == "like" && h.Service.Activity(UserId, indPost, disOrLike) == 1 {
 			if err := h.Service.ReplaceAct(UserId, indPost, disOrLike, 1); err != nil {
+				fmt.Println(0)
 				log.Println(err)
 				return
 			}
 			fmt.Println(1)
 		} else if disOrLike == "like" && h.Service.Activity(UserId, indPost, disOrLike) == 0 {
 			if err := h.Service.ReplaceAct(UserId, indPost, disOrLike, 0); err != nil {
+				fmt.Println(1)
 				log.Println(err)
 				return
 			}
-			fmt.Println(2)
 		} else if disOrLike == "dislike" && h.Service.Activity(UserId, indPost, disOrLike) == 1 {
 			if err := h.Service.ReplaceAct(UserId, indPost, disOrLike, 1); err != nil {
+				fmt.Println(2)
 				log.Println(err)
 				return
 			}
 		} else if disOrLike == "dislike" && h.Service.Activity(UserId, indPost, disOrLike) == 0 {
 			if err := h.Service.ReplaceAct(UserId, indPost, disOrLike, 0); err != nil {
+				fmt.Println(3)
 				log.Println(err)
 				return
 			}
@@ -78,21 +85,25 @@ func (h *PostHandler) postPage(w http.ResponseWriter, r *http.Request) {
 
 		if commActivity == "like" && h.Service.CommAct(UserId, idComm, commActivity) == 1 {
 			if err := h.Service.RemoveAct(UserId, idComm, commActivity, 1); err != nil {
+				fmt.Println(4)
 				log.Println(err)
 				return
 			}
 		} else if commActivity == "like" && h.Service.CommAct(UserId, idComm, commActivity) == 0 {
 			if err := h.Service.RemoveAct(UserId, idComm, commActivity, 0); err != nil {
+				fmt.Println(5)
 				log.Println(err)
 				return
 			}
 		} else if commActivity == "dislike" && h.Service.CommAct(UserId, idComm, commActivity) == 1 {
 			if err := h.Service.RemoveAct(UserId, idComm, commActivity, 1); err != nil {
+				fmt.Println(6)
 				log.Println(err)
 				return
 			}
 		} else if commActivity == "dislike" && h.Service.CommAct(UserId, idComm, commActivity) == 0 {
 			if err := h.Service.RemoveAct(UserId, idComm, commActivity, 0); err != nil {
+				fmt.Println(7)
 				log.Println(err)
 				return
 			}
