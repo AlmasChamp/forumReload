@@ -19,6 +19,7 @@ func NewUserComposites(db *sql.DB) (*UserComposites, error) {
 	// Init Storage
 	repository := userRep.NewRepository(db)
 	// Init Service
+	
 	service := user.NewService(repository)
 	// Init Handler
 	handler := userApi.NewHandler(service)
